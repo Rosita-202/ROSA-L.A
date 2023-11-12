@@ -1,0 +1,150 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Rosita-202/ROSA-L.A/blob/main/Rosa-Lenguajes\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 655
+        },
+        "id": "IC0yG2To7tfK",
+        "outputId": "91148866-533f-452d-83bd-40d5a7343971"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Seleccione la operacion:\n",
+            "1. Concatenacion\n",
+            "4. Union\n",
+            "5. Interseccion\n",
+            "5\n",
+            "Cadena para el conjunto A: a,d,f,e\n",
+            "Cadena para el conjunto B: a,f,g,t\n",
+            "Interseccion:  a,,f,\n"
+          ]
+        },
+        {
+          "output_type": "display_data",
+          "data": {
+            "text/plain": [
+              "<Figure size 640x480 with 1 Axes>"
+            ],
+            "image/png": "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\n"
+          },
+          "metadata": {}
+        }
+      ],
+      "source": [
+        "import networkx as nx\n",
+        "import matplotlib.pyplot as plt\n",
+        "from itertools import product\n",
+        "\n",
+        "class Conjunto:\n",
+        "    def __init__(self, cadena=\"\"):\n",
+        "        self.cadena = cadena\n",
+        "\n",
+        "def concatenacion_conjunto(A, B):\n",
+        "    resultado = Conjunto()\n",
+        "\n",
+        "    for cA, cB in product(A.cadena, B.cadena):\n",
+        "        resultado.cadena += cA + cB + \",\"\n",
+        "\n",
+        "    return resultado\n",
+        "\n",
+        "def union_conjunto(A, B):\n",
+        "    resultado = Conjunto(A.cadena)\n",
+        "\n",
+        "    for c in B.cadena:\n",
+        "        if c not in resultado.cadena:\n",
+        "            resultado.cadena += c\n",
+        "\n",
+        "    return resultado\n",
+        "\n",
+        "def interseccion_conjunto(A, B):\n",
+        "    resultado = Conjunto()\n",
+        "\n",
+        "    for c in A.cadena:\n",
+        "        if c in B.cadena:\n",
+        "            resultado.cadena += c\n",
+        "\n",
+        "    return resultado\n",
+        "\n",
+        "def imprimir_conjunto(conjunto, mensaje):\n",
+        "    print(mensaje, conjunto.cadena)\n",
+        "\n",
+        "def realizar_operacion(opcion, conjunto_A, conjunto_B=None):\n",
+        "    resultado = Conjunto()\n",
+        "\n",
+        "    if opcion == 1:\n",
+        "        resultado = concatenacion_conjunto(conjunto_A, conjunto_B)\n",
+        "        imprimir_conjunto(resultado, \"Concatenacion: \")\n",
+        "        visualizar_grafo(resultado.cadena)\n",
+        "    elif opcion == 4:\n",
+        "        resultado = union_conjunto(conjunto_A, conjunto_B)\n",
+        "        imprimir_conjunto(resultado, \"Union: \")\n",
+        "        visualizar_grafo(resultado.cadena)\n",
+        "    elif opcion == 5:\n",
+        "        resultado = interseccion_conjunto(conjunto_A, conjunto_B)\n",
+        "        imprimir_conjunto(resultado, \"Interseccion: \")\n",
+        "        visualizar_grafo(resultado.cadena)\n",
+        "\n",
+        "def visualizar_grafo(cadena):\n",
+        "    G = nx.Graph()\n",
+        "\n",
+        "    for i in range(len(cadena) - 1):\n",
+        "        G.add_edge(cadena[i], cadena[i + 1])\n",
+        "\n",
+        "    nx.draw(G, with_labels=True, font_weight='bold')\n",
+        "    plt.show()\n",
+        "\n",
+        "def mostrar_interfaz_texto():\n",
+        "    print(\"Seleccione la operacion:\")\n",
+        "    print(\"1. Concatenacion\")\n",
+        "    print(\"4. Union\")\n",
+        "    print(\"5. Interseccion\")\n",
+        "\n",
+        "    opcion = int(input())\n",
+        "\n",
+        "    conjunto_A = Conjunto(input(\"Cadena para el conjunto A: \"))\n",
+        "\n",
+        "    if opcion in [1, 4, 5]:\n",
+        "        conjunto_B = Conjunto(input(\"Cadena para el conjunto B: \"))\n",
+        "    else:\n",
+        "        conjunto_B = None\n",
+        "\n",
+        "    realizar_operacion(opcion, conjunto_A, conjunto_B)\n",
+        "\n",
+        "if __name__ == \"__main__\":\n",
+        "    mostrar_interfaz_texto()"
+      ]
+    }
+  ]
+}
